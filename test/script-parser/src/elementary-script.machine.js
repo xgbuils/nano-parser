@@ -8,7 +8,7 @@ import {
   toSame,
 } from "./reducers";
 
-const startReadingScriptQuoteGroupedArgReducer = ({ refs, current }, token) => {
+const startReadingScriptQuoteGroupedArgReducer = ({ refs, current }) => {
   current.args.push("");
   return {
     refs,

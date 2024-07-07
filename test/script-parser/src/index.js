@@ -77,7 +77,7 @@ const tokenDefs = [
   },
 ];
 
-const runSequentialGroupReducer = (_, token) => {
+const runSequentialGroupReducer = () => {
   const result = {
     type: "sequential_group",
     runs: [],
