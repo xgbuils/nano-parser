@@ -64,10 +64,6 @@ const tokenDefs = [
     pattern: /&&/,
   },
   {
-    type: "parallel_join",
-    pattern: /&/,
-  },
-  {
     type: "word",
     pattern: /[^\s"]+/,
   },
@@ -77,9 +73,9 @@ const tokenDefs = [
   },
 ];
 
-const runSequentialGroupReducer = () => {
+const runGroupReducer = (type) => () => {
   const result = {
-    type: "sequential_group",
+    type,
     runs: [],
   };
   return {
@@ -108,7 +104,11 @@ const parserConfig = {
       next: createElementaryScriptMachine(),
     },
     run_sequential: {
-      reducer: runSequentialGroupReducer,
+      reducer: runGroupReducer("sequential_group"),
+      next: createNpmRunAllScriptMachine(),
+    },
+    run_parallel: {
+      reducer: runGroupReducer("parallel_group"),
       next: createNpmRunAllScriptMachine(),
     },
   },
