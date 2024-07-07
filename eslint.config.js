@@ -1,20 +1,23 @@
-"use strict";
+import js from "@eslint/js";
 
-module.exports = {
+export default [
+  {
+    ...js.configs.recommended,
+    ignores: ["lib/**/*.js"],
+  },
+  /*{
+
   root: true,
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
   },
-  ignorePatterns: ["lib/**/*.js"],
+  
   extends: ["eslint:recommended", "plugin:node/recommended"],
   env: {
     node: true,
   },
-  overrides: [
-    {
-      files: ["tests/**/*.js"],
-      env: { mocha: true },
-    },
-  ],
-};
+}*/
+];
+
+// ignorePatterns: ["lib/**/*.js"],

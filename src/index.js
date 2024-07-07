@@ -1,10 +1,10 @@
 export const createMachine =
   ({ initialState, endStates }, config) =>
-    () => ({
-      initialState,
-      endStates,
-      config,
-    });
+  () => ({
+    initialState,
+    endStates,
+    config,
+  });
 
 export const createParser = (config, { initialState, endStates }, end) => {
   let state = initialState;
@@ -13,7 +13,6 @@ export const createParser = (config, { initialState, endStates }, end) => {
 
   const reducer = (acc, token) => {
     let action;
-    // eslint-disable-next-line no-constant-condition
     while (true) {
       action = currentConfig.config[state]?.[token.type];
       if (action) {

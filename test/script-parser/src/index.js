@@ -123,7 +123,7 @@ export const parseScript = (input) => {
       initialState: "reading_script",
       endStates: new Set(["reading_script"]),
     },
-    ({ refs }) => refs[0] ?? { type: 'empty' },
+    ({ refs }) => refs[0] ?? { type: "empty" },
   );
   return parser.fromIterable(tokens).parse();
 };
