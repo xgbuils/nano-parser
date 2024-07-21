@@ -2,7 +2,11 @@ import { createLexer } from "nano-lexer";
 import { createElementaryScriptMachine } from "./elementary-script.machine";
 import { createNpmRunAllScriptMachine } from "./npm-run-all-script.machine";
 import { createNpmScriptMachine } from "./npm-script.machine";
-import { addScriptReducer, identityStep } from "./reducers";
+import {
+  addElementaryScriptReducer,
+  addNpmScriptReducer,
+  identityStep,
+} from "./reducers";
 import { createParser } from "../../../src";
 
 const tokenDefs = [
@@ -88,19 +92,19 @@ const parserConfig = {
   reading_script: {
     space: identityStep(),
     npm: {
-      reducer: addScriptReducer("npm_run_script"),
+      reducer: addNpmScriptReducer,
       next: createNpmScriptMachine(),
     },
     node: {
-      reducer: addScriptReducer("elementary_script"),
+      reducer: addElementaryScriptReducer,
       next: createElementaryScriptMachine(),
     },
     run: {
-      reducer: addScriptReducer("elementary_script"),
+      reducer: addElementaryScriptReducer,
       next: createElementaryScriptMachine(),
     },
     word: {
-      reducer: addScriptReducer("elementary_script"),
+      reducer: addElementaryScriptReducer,
       next: createElementaryScriptMachine(),
     },
     run_sequential: {

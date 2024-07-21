@@ -50,6 +50,7 @@ test("sequential join (npm && node && eslint)", () => {
       {
         type: "npm_run_script",
         name: "build",
+        configArgs: [],
         args: [],
       },
       {
@@ -80,6 +81,7 @@ test("sequential join (eslint && npm && node)", () => {
       {
         type: "npm_run_script",
         name: "build",
+        configArgs: [],
         args: [],
       },
       {

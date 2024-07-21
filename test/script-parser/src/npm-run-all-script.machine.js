@@ -1,7 +1,7 @@
 import { createMachine } from "../../../src";
 import {
-  addScriptReducer,
-  createScript,
+  addNpmScriptReducer,
+  createNpmScript,
   doNothingReducer,
   identityStep,
   prepareToReadNextScriptReducer,
@@ -11,7 +11,7 @@ import {
 } from "./reducers";
 
 const nextNpmRunAllScriptReducer = ({ refs, current }, token) => {
-  const script = createScript(token, "npm_run_script");
+  const script = createNpmScript(token);
   current.runs.push(script);
   return {
     refs,
@@ -44,7 +44,7 @@ export const createNpmRunAllScriptMachine = () =>
       reading_npm_rum_all_grouped_script: {
         space: identityStep(),
         word: {
-          reducer: addScriptReducer("npm_run_script"),
+          reducer: addNpmScriptReducer,
           next: to("reading_npm_rum_all_grouped_script_args"),
         },
       },

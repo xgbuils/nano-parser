@@ -7,25 +7,41 @@ export const identityStep = () => ({
   next: toSame,
 });
 
-export const createScript = (token, type) => ({
+export const createScript = (token, type, extra) => ({
   type,
   name: token.value,
   args: [],
+  ...extra,
 });
 
-export const addScriptReducer =
-  (type) =>
+export const createElementaryScript = (token) =>
+  createScript(token, "elementary_script");
+
+export const createNpmScript = (token) =>
+  createScript(token, "npm_run_script", {
+    configArgs: [],
+  });
+
+const addScriptReducer =
+  (createScript) =>
   ({ refs, current }, token) => {
-    const result = createScript(token, type);
+    const result = createScript(token);
     if (current) {
       current.runs.push(result);
     }
+    addScriptReducer;
     refs.push(result);
     return {
       refs,
       current: result,
     };
   };
+
+export const addElementaryScriptReducer = addScriptReducer(
+  createElementaryScript,
+);
+
+export const addNpmScriptReducer = addScriptReducer(createNpmScript);
 
 export const readScriptArgReducer = ({ refs, current }, token) => {
   current.args.push(token.value);

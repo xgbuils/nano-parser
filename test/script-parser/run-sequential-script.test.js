@@ -26,7 +26,7 @@ test("simple sequential script group", () => {
   });
 });
 
-test("sequential group with scripts with args", () => {
+test.only("sequential group with scripts with args", () => {
   const result = parseScript('run-s "delay 3000" lint build');
 
   expect(result).toEqual({
@@ -35,16 +35,19 @@ test("sequential group with scripts with args", () => {
       {
         type: "npm_run_script",
         name: "delay",
+        configArgs: [],
         args: ["3000"],
       },
       {
         type: "npm_run_script",
         name: "lint",
+        configArgs: [],
         args: [],
       },
       {
         type: "npm_run_script",
         name: "build",
+        configArgs: [],
         args: [],
       },
     ],

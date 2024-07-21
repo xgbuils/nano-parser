@@ -13,11 +13,13 @@ test("sequential joins & run-s", () => {
           {
             type: "npm_run_script",
             name: "clean",
+            configArgs: [],
             args: [],
           },
           {
             type: "npm_run_script",
             name: "lint",
+            configArgs: [],
             args: [],
           },
         ],
@@ -25,6 +27,7 @@ test("sequential joins & run-s", () => {
       {
         type: "npm_run_script",
         name: "build",
+        configArgs: [],
         args: [],
       },
     ],
